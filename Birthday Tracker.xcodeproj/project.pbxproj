@@ -18,6 +18,7 @@
 		5F4D91DF2C584FAA00C9BD5D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4D91DE2C584FAA00C9BD5D /* ProfileView.swift */; };
 		5F4D91E12C584FB800C9BD5D /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4D91E02C584FB800C9BD5D /* CountdownView.swift */; };
 		5F4D91E52C584FFE00C9BD5D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4D91E42C584FFE00C9BD5D /* ProfileViewModel.swift */; };
+		D94AF8D92C5850EF0042E9AB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D94AF8D82C5850EF0042E9AB /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		5F4D91DE2C584FAA00C9BD5D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		5F4D91E02C584FB800C9BD5D /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		5F4D91E42C584FFE00C9BD5D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		D94AF8D82C5850EF0042E9AB /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 		5F4D91B92C584C7300C9BD5D = {
 			isa = PBXGroup;
 			children = (
+				D94AF8D82C5850EF0042E9AB /* .gitignore */,
 				5F4D91C42C584C7300C9BD5D /* Birthday Tracker */,
 				5F4D91C32C584C7300C9BD5D /* Products */,
 			);
@@ -171,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F4D91CD2C584C7400C9BD5D /* Preview Assets.xcassets in Resources */,
+				D94AF8D92C5850EF0042E9AB /* .gitignore in Resources */,
 				5F4D91CA2C584C7400C9BD5D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
