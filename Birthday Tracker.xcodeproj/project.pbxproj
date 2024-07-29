@@ -11,6 +11,13 @@
 		5F4D91C82C584C7300C9BD5D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4D91C72C584C7300C9BD5D /* ContentView.swift */; };
 		5F4D91CA2C584C7400C9BD5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F4D91C92C584C7400C9BD5D /* Assets.xcassets */; };
 		5F4D91CD2C584C7400C9BD5D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F4D91CC2C584C7400C9BD5D /* Preview Assets.xcassets */; };
+		5F4D91D72C584F2600C9BD5D /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4D91D62C584F2600C9BD5D /* Calendar.swift */; };
+		5F4D91D92C584F5E00C9BD5D /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4D91D82C584F5E00C9BD5D /* ProfileModel.swift */; };
+		5F4D91DB2C584F7700C9BD5D /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4D91DA2C584F7700C9BD5D /* ListView.swift */; };
+		5F4D91DD2C584FA100C9BD5D /* ProfileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4D91DC2C584FA100C9BD5D /* ProfileEditorView.swift */; };
+		5F4D91DF2C584FAA00C9BD5D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4D91DE2C584FAA00C9BD5D /* ProfileView.swift */; };
+		5F4D91E12C584FB800C9BD5D /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4D91E02C584FB800C9BD5D /* CountdownView.swift */; };
+		5F4D91E52C584FFE00C9BD5D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4D91E42C584FFE00C9BD5D /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +26,13 @@
 		5F4D91C72C584C7300C9BD5D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5F4D91C92C584C7400C9BD5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F4D91CC2C584C7400C9BD5D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5F4D91D62C584F2600C9BD5D /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		5F4D91D82C584F5E00C9BD5D /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		5F4D91DA2C584F7700C9BD5D /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		5F4D91DC2C584FA100C9BD5D /* ProfileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorView.swift; sourceTree = "<group>"; };
+		5F4D91DE2C584FAA00C9BD5D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		5F4D91E02C584FB800C9BD5D /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
+		5F4D91E42C584FFE00C9BD5D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +66,10 @@
 			isa = PBXGroup;
 			children = (
 				5F4D91C52C584C7300C9BD5D /* Birthday_TrackerApp.swift */,
+				5F4D91D52C584F0B00C9BD5D /* ViewModels */,
 				5F4D91C72C584C7300C9BD5D /* ContentView.swift */,
+				5F4D91D42C584F0500C9BD5D /* Views */,
+				5F4D91D32C584F0000C9BD5D /* Models */,
 				5F4D91C92C584C7400C9BD5D /* Assets.xcassets */,
 				5F4D91CB2C584C7400C9BD5D /* Preview Content */,
 			);
@@ -65,6 +82,34 @@
 				5F4D91CC2C584C7400C9BD5D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5F4D91D32C584F0000C9BD5D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5F4D91D82C584F5E00C9BD5D /* ProfileModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5F4D91D42C584F0500C9BD5D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5F4D91D62C584F2600C9BD5D /* Calendar.swift */,
+				5F4D91DA2C584F7700C9BD5D /* ListView.swift */,
+				5F4D91DC2C584FA100C9BD5D /* ProfileEditorView.swift */,
+				5F4D91DE2C584FAA00C9BD5D /* ProfileView.swift */,
+				5F4D91E02C584FB800C9BD5D /* CountdownView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5F4D91D52C584F0B00C9BD5D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5F4D91E42C584FFE00C9BD5D /* ProfileViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +183,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F4D91C82C584C7300C9BD5D /* ContentView.swift in Sources */,
+				5F4D91DD2C584FA100C9BD5D /* ProfileEditorView.swift in Sources */,
+				5F4D91E12C584FB800C9BD5D /* CountdownView.swift in Sources */,
+				5F4D91E52C584FFE00C9BD5D /* ProfileViewModel.swift in Sources */,
+				5F4D91D72C584F2600C9BD5D /* Calendar.swift in Sources */,
+				5F4D91DB2C584F7700C9BD5D /* ListView.swift in Sources */,
 				5F4D91C62C584C7300C9BD5D /* Birthday_TrackerApp.swift in Sources */,
+				5F4D91DF2C584FAA00C9BD5D /* ProfileView.swift in Sources */,
+				5F4D91D92C584F5E00C9BD5D /* ProfileModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
