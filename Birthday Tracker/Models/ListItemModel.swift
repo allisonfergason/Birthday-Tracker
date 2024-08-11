@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ListItemModel: Identifiable {
+struct ListItemModel: Identifiable, Codable {
     let name: String
     let birthday: Date
     let id: String
