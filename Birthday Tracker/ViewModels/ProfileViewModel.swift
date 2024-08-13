@@ -53,6 +53,7 @@ class ProfileViewModel: ObservableObject {
             UserDefaults.standard.set(encodedData, forKey: contactsKey)
         }
     }
+    
 }
 
 func getSampleDate (offset: Int) -> Date {
