@@ -22,10 +22,14 @@ struct ListView: View {
         .navigationTitle("Birthdays")
         .padding(10)
     }
+}
+
+struct ListItemView: View {
+    var name: String
+    var date: String
+    let color: Color = .random
     
-    @ViewBuilder
-    func ListItemView(name: String, date: String) -> some View {
-        let color: Color = .random
+    var body: some View {
         HStack(alignment: .center) {
             Text(name)
                 .foregroundColor(Color.white)

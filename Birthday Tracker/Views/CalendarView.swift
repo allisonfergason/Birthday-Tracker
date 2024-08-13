@@ -75,6 +75,31 @@ struct CalendarView: View {
                         }
                 }
             }
+            
+            VStack(spacing: 20) {
+                if let contact = listViewModel.contacts.first(where: { contact in
+                    return isSameDay(date1: contact.birthday, date2: currentDate)
+                }) {
+                    let selectedDate = Calendar.current.dateComponents([.day, .month], from: contact.birthday)
+                    Text("Birthdays on \(selectedDate.month!)/\(selectedDate.day!)")
+                        .font(.title2.bold())
+                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                    ListItemView(name: contact.name, date: contact.dateToString())
+                } else {
+                    Text("Upcoming Birthdays")
+                        .font(.title2.bold())
+                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                    let comingDates = Array(listViewModel.contacts.prefix(3))
+                    if comingDates.isEmpty {
+                        Text("Some birthdays found")
+                    }
+                    ForEach(comingDates) { contact in
+                        ListItemView(name: contact.name, date: contact.dateToString())
+                    }
+                }
+            }
+            .padding()
+            .padding(.top, 10)
         }.onChange(of: currentMonth) {
             // update Month
             currentDate = getCurrentMonth()
