@@ -10,6 +10,7 @@ import SwiftUI
 struct CalendarView: View {
     
     @Binding var currentDate: Date
+    @EnvironmentObject var listViewModel: ListViewModel
     
     // Month update on arrow button clicks
     @State var currentMonth: Int = 0
@@ -22,14 +23,12 @@ struct CalendarView: View {
             
             HStack(spacing: 20) {
                 VStack(alignment: .leading, spacing: 10) {
-                    
                     Text(extraData()[1])
                         .font(.caption)
                         .fontWeight(.semibold)
                     
                     Text(extraData()[0])
                         .font(.title.bold())
-                    
                 }
                 
                 Spacer(minLength: 0)
@@ -65,6 +64,15 @@ struct CalendarView: View {
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(extractDate()) {value in
                     CardView( value: value)
+                        .background(
+                            Capsule()
+                                .fill(.pink)
+                                .padding(.horizontal, 8)
+                                .opacity(isSameDay(date1: value.date, date2: currentDate) ? 1 : 0)
+                        )
+                        .onTapGesture {
+                            currentDate = value.date
+                        }
                 }
             }
         }.onChange(of: currentMonth) {
@@ -77,12 +85,34 @@ struct CalendarView: View {
     func CardView(value: DateValue) -> some View {
         VStack {
             if value.day != -1 {
-                Text("\(value.day)")
-                    .font(.title3.bold())
+                if let contact = listViewModel.contacts.first(where: { contact in
+                    
+                    return isSameDay(date1: contact.birthday, date2: value.date)
+                }) {
+                    Text("\(value.day)")
+                        .font(.title3.bold())
+                        .foregroundColor(isSameDay(date1: contact.birthday, date2: currentDate) ? .white : .primary)
+                        .frame(maxWidth: .infinity)
+                    Spacer()
+                    Circle()
+                        .fill(isSameDay(date1: contact.birthday, date2: currentDate) ? .white : .pink)
+                        .frame(width: 8, height: 8)
+                } else {
+                    Text("\(value.day)")
+                        .font(.title3.bold())
+                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : .primary)
+                        .frame(maxWidth: .infinity)
+                    Spacer()
+                }
             }
         }
-        .padding(.vertical, 8)
+        .padding(.vertical, 9)
         .frame(height: 60, alignment: .top)
+    }
+    
+    func isSameDay(date1: Date, date2: Date) -> Bool {
+        let calendar = Calendar.current
+        return calendar.isDate(date1, inSameDayAs: date2)
     }
     
     func extraData() -> [String] {
@@ -131,7 +161,7 @@ struct CalendarView: View {
 }
 
 #Preview {
-    ContentView()
+    HomeView().environmentObject(ListViewModel())
 }
 
 // extend Date to get current month dates
