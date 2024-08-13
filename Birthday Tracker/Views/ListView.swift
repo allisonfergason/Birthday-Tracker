@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ListView: View {
-    @EnvironmentObject var listViewModel: ListViewModel
+    @EnvironmentObject var profileViewModel: ProfileViewModel
     
     var body: some View {
         ScrollView(.vertical) {
             VStack {
                 // for each contact in your list
-                ForEach (listViewModel.contacts) { item in
+                ForEach (profileViewModel.contacts) { item in
                     ListItemView(name: item.name, date: item.dateToString())
                 }
             }
@@ -48,7 +48,7 @@ struct ListItemView: View {
     NavigationView {
         ListView()
     }
-    .environmentObject(ListViewModel())
+    .environmentObject(ProfileViewModel())
 }
 
 extension Color {

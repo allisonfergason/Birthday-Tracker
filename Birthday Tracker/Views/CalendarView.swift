@@ -10,7 +10,7 @@ import SwiftUI
 struct CalendarView: View {
     
     @Binding var currentDate: Date
-    @EnvironmentObject var listViewModel: ListViewModel
+    @EnvironmentObject var profileViewModel: ProfileViewModel
     
     // Month update on arrow button clicks
     @State var currentMonth: Int = 0
@@ -77,7 +77,7 @@ struct CalendarView: View {
             }
             
             VStack(spacing: 20) {
-                if let contact = listViewModel.contacts.first(where: { contact in
+                if let contact = profileViewModel.contacts.first(where: { contact in
                     return isSameDay(date1: contact.birthday, date2: currentDate)
                 }) {
                     let selectedDate = Calendar.current.dateComponents([.day, .month], from: contact.birthday)
@@ -89,7 +89,7 @@ struct CalendarView: View {
                     Text("Upcoming Birthdays")
                         .font(.title2.bold())
                         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-                    let comingDates = Array(listViewModel.contacts.prefix(3))
+                    let comingDates = Array(profileViewModel.contacts.prefix(3))
                     if comingDates.isEmpty {
                         Text("Some birthdays found")
                     }
@@ -110,7 +110,7 @@ struct CalendarView: View {
     func CardView(value: DateValue) -> some View {
         VStack {
             if value.day != -1 {
-                if let contact = listViewModel.contacts.first(where: { contact in
+                if let contact = profileViewModel.contacts.first(where: { contact in
                     
                     return isSameDay(date1: contact.birthday, date2: value.date)
                 }) {
@@ -186,7 +186,7 @@ struct CalendarView: View {
 }
 
 #Preview {
-    HomeView().environmentObject(ListViewModel())
+    HomeView().environmentObject(ProfileViewModel())
 }
 
 // extend Date to get current month dates

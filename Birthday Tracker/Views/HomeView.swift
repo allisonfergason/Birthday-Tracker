@@ -22,5 +22,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView().environmentObject(ListViewModel())
+    HomeView().environmentObject(ProfileViewModel())
 }

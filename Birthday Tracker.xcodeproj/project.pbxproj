@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F22D1742C67D93000A72D4A /* ListItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F22D1732C67D93000A72D4A /* ListItemModel.swift */; };
-		5F22D1762C69335500A72D4A /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F22D1752C69335500A72D4A /* ListViewModel.swift */; };
 		5F4D91C62C584C7300C9BD5D /* Birthday_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4D91C52C584C7300C9BD5D /* Birthday_TrackerApp.swift */; };
 		5F4D91C82C584C7300C9BD5D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4D91C72C584C7300C9BD5D /* ContentView.swift */; };
 		5F4D91CA2C584C7400C9BD5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F4D91C92C584C7400C9BD5D /* Assets.xcassets */; };
@@ -26,8 +24,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5F22D1732C67D93000A72D4A /* ListItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemModel.swift; sourceTree = "<group>"; };
-		5F22D1752C69335500A72D4A /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		5F4D91C22C584C7300C9BD5D /* Birthday Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Birthday Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F4D91C52C584C7300C9BD5D /* Birthday_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Birthday_TrackerApp.swift; sourceTree = "<group>"; };
 		5F4D91C72C584C7300C9BD5D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,7 +96,6 @@
 			children = (
 				5F4D91D82C584F5E00C9BD5D /* ProfileModel.swift */,
 				D9A9302E2C67E1A00001C13D /* DateValueModel.swift */,
-				5F22D1732C67D93000A72D4A /* ListItemModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -122,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				5F4D91E42C584FFE00C9BD5D /* ProfileViewModel.swift */,
-				5F22D1752C69335500A72D4A /* ListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -206,8 +200,6 @@
 				D9A9302F2C67E1A00001C13D /* DateValueModel.swift in Sources */,
 				5F4D91D72C584F2600C9BD5D /* CalendarView.swift in Sources */,
 				5F4D91DB2C584F7700C9BD5D /* ListView.swift in Sources */,
-				5F22D1742C67D93000A72D4A /* ListItemModel.swift in Sources */,
-				5F22D1762C69335500A72D4A /* ListViewModel.swift in Sources */,
 				5F4D91C62C584C7300C9BD5D /* Birthday_TrackerApp.swift in Sources */,
 				5F4D91DF2C584FAA00C9BD5D /* ProfileView.swift in Sources */,
 				5F4D91D92C584F5E00C9BD5D /* ProfileModel.swift in Sources */,
