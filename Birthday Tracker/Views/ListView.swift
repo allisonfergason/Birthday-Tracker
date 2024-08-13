@@ -15,24 +15,28 @@ struct ListView: View {
             VStack {
                 // for each contact in your list
                 ForEach (listViewModel.contacts) { item in
-                    HStack {
-                        HStack(alignment: .center) {
-                            Text(item.name)
-                                .foregroundColor(Color.white)
-                            Spacer(minLength: 150)
-                            Text(item.dateToString())
-                                .foregroundColor(Color.white)
-                        }
-                        .padding(.horizontal)
-                        .frame(height:55)
-                        .background(Color(#colorLiteral(red: 0, green: 0.3285208941, blue: 0.5748849511, alpha: 1)))
-                        .cornerRadius(10)
-                    }
+                    ListItemView(name: item.name, date: item.dateToString())
                 }
             }
         }
         .navigationTitle("Birthdays")
         .padding(10)
+    }
+    
+    @ViewBuilder
+    func ListItemView(name: String, date: String) -> some View {
+        let color: Color = .random
+        HStack(alignment: .center) {
+            Text(name)
+                .foregroundColor(Color.white)
+            Spacer(minLength: 150)
+            Text(date)
+                .foregroundColor(Color.white)
+        }
+        .padding(.horizontal)
+        .frame(height:55)
+        .background(color)
+        .cornerRadius(10)
     }
 }
 
@@ -41,4 +45,14 @@ struct ListView: View {
         ListView()
     }
     .environmentObject(ListViewModel())
+}
+
+extension Color {
+    static var random: Color {
+        return Color(
+            red: .random(in: 0...1),
+            green: .random(in: 0...1),
+            blue: .random(in: 0...1)
+        )
+    }
 }

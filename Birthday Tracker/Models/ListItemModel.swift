@@ -19,9 +19,8 @@ struct ListItemModel: Identifiable, Codable {
     }
     
     func dateToString() -> String {
-        let date = Date.now
         let formatter = DateFormatter()
         formatter.dateStyle = .short
-        return formatter.string(from: date)
+        return formatter.string(from: birthday)
     }
 }

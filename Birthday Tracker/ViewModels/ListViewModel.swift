@@ -23,9 +23,9 @@ class ListViewModel: ObservableObject {
     func getContacts() {
         
         let newItems = [
-            ListItemModel(name: "first", birthday: Date()),
-            ListItemModel(name: "second", birthday: Date()),
-            ListItemModel(name: "third", birthday: Date())
+            ListItemModel(name: "first", birthday: getSampleDate(offset: -1)),
+            ListItemModel(name: "second", birthday: getSampleDate(offset: 9)),
+            ListItemModel(name: "third", birthday: getSampleDate(offset: 15))
         ]
         contacts.append(contentsOf: newItems)
         
@@ -50,4 +50,10 @@ class ListViewModel: ObservableObject {
             UserDefaults.standard.set(encodedData, forKey: contactsKey)
         }
     }
+}
+
+func getSampleDate (offset: Int) -> Date {
+    let calendar = Calendar.current
+    let date = calendar.date(byAdding: .day, value: offset, to: Date())
+    return date ?? Date()
 }
