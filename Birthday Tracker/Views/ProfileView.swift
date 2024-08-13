@@ -10,8 +10,8 @@ import SwiftUI
 struct ProfileView: View {
     
     @State var notifEnabled = true
-    var name: String = "Curtis (Cok) Chung"
-    var birthday: String = "September 11, 2001"
+    var name: String = "Curtis Chung"
+    var birthday: String = "September 12, 2004"
     var notes: [String] = ["Very very very short", "Um, actually"]
     
     var body: some View {
