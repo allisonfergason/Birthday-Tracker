@@ -32,7 +32,7 @@ struct ListView: View {
     func getMonthContacts(month: String) -> some View {
             VStack {
             ForEach(profileViewModel.contacts) { item in
-                if item.getMonth() == month {
+                if item.getBirthMonth() == month {
                     ListItemView(name: item.name, date: item.dateToString())
                 }
             }
@@ -66,14 +66,4 @@ struct ListItemView: View {
         ListView()
     }
     .environmentObject(ProfileViewModel())
-}
-
-extension Color {
-    static var random: Color {
-        return Color(
-            red: .random(in: 0...0.3),
-            green: .random(in: 0...0.5),
-            blue: .random(in: 0...1)
-        )
-    }
 }

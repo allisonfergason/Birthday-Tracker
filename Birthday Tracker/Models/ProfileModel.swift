@@ -30,8 +30,7 @@ struct ProfileModel: Identifiable, Codable {
         return formatter.string(from: birthday)
     }
     
-    // edward please make this actually work 
-    func getMonth() -> String {
-        return "April"
+    func getBirthMonth() -> String {
+        return birthday.getMonthName()
     }
 }
