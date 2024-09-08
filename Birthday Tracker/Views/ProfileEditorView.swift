@@ -16,14 +16,9 @@ struct ProfileEditorView: View {
     
     var body: some View {
         VStack( spacing: 35 ) {
+            
+            // TODO: Fix navigation
             HStack {
-                Button {
-                    withAnimation{
-                       
-                    }
-                } label: {
-                    Text("Cancel")
-                }
                 Spacer()
                 Button {
                     withAnimation{
