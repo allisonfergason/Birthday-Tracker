@@ -25,7 +25,7 @@ class ProfileViewModel: ObservableObject {
         let newItems = [
             ProfileModel(name: "first", birthday: getSampleDate(offset: -1)),
             ProfileModel(name: "second", birthday: getSampleDate(offset: 9)),
-            ProfileModel(name: "third", birthday: getSampleDate(offset: 15))
+            ProfileModel(name: "third", birthday: getSampleDate(offset: 40))
         ]
         contacts.append(contentsOf: newItems)
         contacts = contacts.sorted(by: {
