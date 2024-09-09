@@ -54,6 +54,16 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
+    func isMonthEmpty(month: String) -> Bool {
+        var exist = false
+        for item in contacts {
+            if item.getBirthMonth() == month {
+                exist = true
+                break
+            }
+        }
+        return exist
+    }
 }
 
 func getSampleDate (offset: Int) -> Date {

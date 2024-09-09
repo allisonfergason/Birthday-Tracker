@@ -37,17 +37,11 @@ struct ListView: View {
         .padding(10)
     }
     
-    // fix this later!
     @ViewBuilder
     func isMonthEmpty(month: String) -> some View {
-        //var exist : Bool = false
-        ForEach(profileViewModel.contacts) { item in
-            if item.getBirthMonth() == month {
-                //exist = true
-                MonthHeaderView(month: month)
-            }
+        if (profileViewModel.isMonthEmpty(month: month)) {
+            MonthHeaderView(month: month)
         }
-        //return EmptyView()
     }
     
     @ViewBuilder
