@@ -18,17 +18,17 @@ struct ProfileEditorView: View {
         VStack( spacing: 35 ) {
             
             // TODO: Fix navigation
-            HStack {
-                Spacer()
-                Button {
-                    withAnimation{
-                        
-                    }
-                } label: {
-                    Text("Done")
-                }
-            }
-            .padding(.horizontal)
+//            HStack {
+//                Spacer()
+//                Button {
+//                    withAnimation{
+//                        
+//                    }
+//                } label: {
+//                    Text("Done")
+//                }
+//            }
+            //.padding(.horizontal)
             VStack( spacing: 35 ) {
                 Circle()
                     .fill(Color.random)
@@ -95,9 +95,12 @@ struct ProfileEditorView: View {
         }
         .padding(.top)
         .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+        .navigationBarItems(trailing: NavigationLink("Done", destination: ProfileView()))
     }
 }
 
 #Preview {
-    ProfileEditorView()
+    NavigationView {
+        ProfileEditorView()
+    }
 }

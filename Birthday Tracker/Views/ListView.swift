@@ -10,6 +10,8 @@ import SwiftUI
 struct ListView: View {
     @EnvironmentObject var profileViewModel: ProfileViewModel
     
+    // make list items into buttons that lead to a profile, pass the profile model object to 
+    
     var body: some View {
         ScrollView(.vertical) {
             VStack {

@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ProfileView: View {
     
+    // 
     @State var notifEnabled = true
     var name: String = "Curtis Chung"
     var birthday: String = "September 12, 2004"
     var notes: [String] = ["Very very very short", "Um, actually"]
     
     var body: some View {
-        NavigationView {
+        ScrollView {
             VStack( spacing: 35 ) {
                 HStack {
                     Button {
@@ -28,9 +29,9 @@ struct ProfileView: View {
                     Spacer()
                     
                     // TODO: fix navigation
-                    NavigationLink(destination: ProfileEditorView()) {
-                        Text("Edit")
-                    }
+//                    NavigationLink(destination: ProfileEditorView()) {
+//                        Text("Edit")
+//                    }
                 }
                 .padding(.horizontal)
                 VStack( spacing: 35 ) {
@@ -91,9 +92,12 @@ struct ProfileView: View {
             }
             .padding(.top)
         }
+        .navigationBarItems(trailing: NavigationLink("Edit", destination: ProfileEditorView()))
     }
+    
 }
-
 #Preview {
-    ProfileView()
+    NavigationView {
+        ProfileView()
+    }
 }

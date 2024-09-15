@@ -29,4 +29,8 @@ struct ProfileModel: Identifiable, Codable {
         formatter.dateFormat = "M/d"
         return formatter.string(from: birthday)
     }
+    
+    func update() -> ProfileModel {
+        return ProfileModel(id: id, name: name, birthday: birthday, age: age, notifEnabled: notifEnabled, notes, notes)
+    }
 }
