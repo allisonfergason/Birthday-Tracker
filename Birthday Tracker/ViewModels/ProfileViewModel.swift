@@ -25,7 +25,7 @@ class ProfileViewModel: ObservableObject {
         let newItems = [
             ProfileModel(name: "first", birthday: getSampleDate(offset: -1)),
             ProfileModel(name: "second", birthday: getSampleDate(offset: 9)),
-            ProfileModel(name: "third", birthday: getSampleDate(offset: 15))
+            ProfileModel(name: "third", birthday: getSampleDate(offset: 40))
         ]
         contacts.append(contentsOf: newItems)
         contacts = contacts.sorted(by: {
@@ -52,6 +52,17 @@ class ProfileViewModel: ObservableObject {
         if let encodedData = try? JSONEncoder().encode(contacts) {
             UserDefaults.standard.set(encodedData, forKey: contactsKey)
         }
+    }
+    
+    func isMonthEmpty(month: String) -> Bool {
+        var exist = false
+        for item in contacts {
+            if item.getBirthMonth() == month {
+                exist = true
+                break
+            }
+        }
+        return exist
     }
 }
 

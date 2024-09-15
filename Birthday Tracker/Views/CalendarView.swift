@@ -188,19 +188,3 @@ struct CalendarView: View {
 #Preview {
     HomeView().environmentObject(ProfileViewModel())
 }
-
-// extend Date to get current month dates
-extension Date{
-    func getAllDates() -> [Date] {
-        let calendar = Calendar.current
-        
-        // get start date
-        let startDate = calendar.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
-        
-        let range = calendar.range(of: .day, in: .month, for: startDate)! // get days in current month
-        
-        return range.compactMap { day -> Date in
-            return calendar.date(byAdding: .day, value: day - 1, to: startDate)!
-        }
-    }
-}
