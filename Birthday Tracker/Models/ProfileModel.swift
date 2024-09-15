@@ -29,4 +29,8 @@ struct ProfileModel: Identifiable, Codable {
         formatter.dateFormat = "M/d"
         return formatter.string(from: birthday)
     }
+    
+    func getBirthMonth() -> String {
+        return birthday.getMonthName()
+    }
 }
