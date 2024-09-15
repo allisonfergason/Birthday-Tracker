@@ -8,17 +8,30 @@
 import SwiftUI
 
 struct CountdownView: View {
+    
+    let birthdayComponents = DateComponents(calendar: .current, month: 9, day: 14)
+    var monthsLeft: Int
+    var daysLeft: Int
+    init() {
+        let today = Date().removeTimeStamp()
+        let nextBirthday = Calendar.current.nextDate(after: today, matching: birthdayComponents, matchingPolicy: .nextTime)!
+        monthsLeft = nextBirthday.monthsFrom(from: today);
+        let todayPlusMonths = Calendar.current.date(byAdding: .month, value: monthsLeft, to: today)!
+        daysLeft = nextBirthday.daysFrom(from: todayPlusMonths)
+    }
+    
+    
     var body: some View {
         ScrollView(.vertical) {
             VStack {
                 Spacer()
                 // get variables to count down
-                Text("8")
+                Text("\(monthsLeft)")
                     .font(.custom("SFUIDisplay-Light", size: 120))
                 Text("months")
                     .font(.title)
                 Spacer()
-                Text("6")
+                Text("\(daysLeft)")
                     .font(.custom("SFUIDisplay-Light", size: 120))
                 Text("days")
                     .font(.title)

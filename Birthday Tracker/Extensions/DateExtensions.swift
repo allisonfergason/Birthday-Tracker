@@ -27,4 +27,18 @@ extension Date{
         formatter.dateFormat = "LLLL"
         return formatter.string(from: self)
     }
+    
+    func monthsFrom(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.month], from: date, to: self).month ?? 0
+    }
+    func daysFrom(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
+    }
+    
+    func removeTimeStamp() -> Date {
+        guard let date = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: self)) else {
+            fatalError("Failed to strip time from Date object")
+        }
+        return date
+    }
 }
