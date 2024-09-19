@@ -95,7 +95,7 @@ struct CalendarView: View {
                         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
                     
                     // find upcoming
-                    let nextIndex = profileViewModel.getIndex(date: getCurrentDate());
+                    let nextIndex = profileViewModel.getIndex(date: currentDate);
                     let comingDates =
                     
                     // loops around to beginning of year if necessary
@@ -174,18 +174,6 @@ struct CalendarView: View {
         // return date as DateValue
         return currentMonth
     }
-    
-    func getCurrentDate() -> Date {
-        let calendar = Calendar.current
-        
-        // how to get this to return exact date
-        guard let currentDay = calendar.date(byAdding: .month, value: self.currentMonth, to: Date()) else {
-            return Date()
-        }
-        
-        return currentDay
-    }
-
     
     func extractDate() -> [DateValue]{
         // get current month date

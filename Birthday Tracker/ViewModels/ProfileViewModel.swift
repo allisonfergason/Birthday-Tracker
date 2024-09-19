@@ -78,9 +78,20 @@ class ProfileViewModel: ObservableObject {
     }
     
     func getIndex(date: Date) -> Int {
-        // fix this so it sorts the contacts by date and then searches for the next closest after the
-        // input date
-        return 2
+        let sortedContacts = contacts.sorted { $0.birthday < $1.birthday }
+        var index = 0
+        var flag = false
+        for item in sortedContacts {
+            if item.birthday > date {
+                flag = true
+                break
+            }
+            index+=1
+        }
+        if flag == false {
+            return 0
+        }
+        return index
     }
     
 }
