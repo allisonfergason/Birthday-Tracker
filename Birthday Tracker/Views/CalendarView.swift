@@ -81,15 +81,30 @@ struct CalendarView: View {
                     return isSameDay(date1: contact.birthday, date2: currentDate)
                 }) {
                     let selectedDate = Calendar.current.dateComponents([.day, .month], from: contact.birthday)
+                    let todayArray = profileViewModel.getDateList(date: contact.birthday)
                     Text("Birthdays on \(selectedDate.month!)/\(selectedDate.day!)")
                         .font(.title2.bold())
                         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-                    ListItemView(name: contact.name, date: contact.dateToString())
+                    
+                    ForEach(todayArray) { item in
+                        ListItemView(name: item.name, date: item.dateToString())
+                    }
                 } else {
                     Text("Upcoming Birthdays")
                         .font(.title2.bold())
                         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-                    let comingDates = Array(profileViewModel.contacts.prefix(3))
+                    
+                    // find upcoming
+                    let nextIndex = profileViewModel.getIndex(date: currentDate);
+                    let comingDates =
+                    
+                    // loops around to beginning of year if necessary
+                    if nextIndex >= profileViewModel.contacts.count-1 {
+                        [profileViewModel.contacts[nextIndex], profileViewModel.contacts[0]]
+                    } else {
+                        Array(profileViewModel.contacts[nextIndex...nextIndex+1])
+                    }
+                    
                     if comingDates.isEmpty {
                         Text("Some birthdays found")
                     }

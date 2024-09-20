@@ -24,7 +24,7 @@ class ProfileViewModel: ObservableObject {
         
         let newItems = [
             ProfileModel(name: "first", birthday: getSampleDate(offset: -1)),
-            ProfileModel(name: "second", birthday: getSampleDate(offset: 9)),
+            ProfileModel(name: "second", birthday: getSampleDate(offset: 10)),
             ProfileModel(name: "third", birthday: getSampleDate(offset: 40))
         ]
         contacts.append(contentsOf: newItems)
@@ -64,6 +64,36 @@ class ProfileViewModel: ObservableObject {
         }
         return exist
     }
+    
+    func getDateList(date: Date) -> Array<ProfileModel> {
+        var array: Array<ProfileModel> = Array()
+        let calendar = Calendar.current
+        for item in contacts {
+            let date2 = item.birthday
+            if (calendar.isDate(date, inSameDayAs: date2)) {
+                array.append(item)
+            }
+        }
+        return array
+    }
+    
+    func getIndex(date: Date) -> Int {
+        let sortedContacts = contacts.sorted { $0.birthday < $1.birthday }
+        var index = 0
+        var flag = false
+        for item in sortedContacts {
+            if item.birthday > date {
+                flag = true
+                break
+            }
+            index+=1
+        }
+        if flag == false {
+            return 0
+        }
+        return index
+    }
+    
 }
 
 func getSampleDate (offset: Int) -> Date {
