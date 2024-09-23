@@ -26,6 +26,7 @@ struct CountdownView: View {
             VStack {
                 Spacer()
                 // get variables to count down
+                // add some colored boxes or something for the background
                 Text("\(monthsLeft)")
                     .font(.custom("SFUIDisplay-Light", size: 120))
                 Text("months")

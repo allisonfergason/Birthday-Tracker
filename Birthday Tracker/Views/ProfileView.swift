@@ -36,6 +36,7 @@ struct ProfileView: View {
             .padding(.horizontal)
             VStack( spacing: 35 ) {
                 Circle()
+                // fix the color thing
                     .fill(Color.random)
                     .frame(width: 256, height: 256)
                 Text(name)
