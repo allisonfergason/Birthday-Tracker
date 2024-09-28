@@ -25,7 +25,7 @@ struct ListView: View {
                 .frame(height: 1)
                 .foregroundColor(Color(#colorLiteral(red: 0.8692006469, green: 0.8692006469, blue: 0.8692006469, alpha: 1)))
                 .padding(.vertical)
-            // button to replace navbar add
+            // doesn't work??
             NavigationLink ("Add Contact", destination: ProfileEditorView())
                 .foregroundColor(.white)
                 .font(.headline)
@@ -51,7 +51,7 @@ struct ListView: View {
             VStack {
             ForEach(profileViewModel.contacts) { item in
                 if item.getBirthMonth() == month {
-                    ListItemView(name: item.name, date: item.dateToString())
+                    ListItemView(item: item)
                 }
             }
         }
@@ -60,22 +60,32 @@ struct ListView: View {
 }
 
 struct ListItemView: View {
+    var contact: ProfileModel
     var name: String
     var date: String
     let color: Color = .random
     
+    init(item: ProfileModel) {
+        self.contact = item
+        self.name = item.name
+        self.date = item.dateToString()
+    }
+    
     var body: some View {
-        HStack(alignment: .center) {
-            Text(name)
-                .foregroundColor(Color.white)
-            Spacer(minLength: 150)
-            Text(date)
-                .foregroundColor(Color.white)
-        }
-        .padding(.horizontal)
-        .frame(height:55)
-        .background(color)
-        .cornerRadius(10)
+        NavigationLink(destination: ProfileView(profile: contact),
+            label: {
+            HStack(alignment: .center) {
+                Text(name)
+                    .foregroundColor(Color.white)
+                Spacer(minLength: 150)
+                Text(date)
+                    .foregroundColor(Color.white)
+            }
+            .padding(.horizontal)
+            .frame(height:55)
+            .background(color)
+            .cornerRadius(10)
+            })
     }
 }
 struct MonthHeaderView: View {

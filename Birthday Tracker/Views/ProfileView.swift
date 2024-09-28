@@ -8,32 +8,30 @@
 import SwiftUI
 
 struct ProfileView: View {
-    
-    // 
+    //
+    @EnvironmentObject var profileViewModel: ProfileViewModel
+    @State var profile: ProfileModel
     @State var notifEnabled = true
-    var name: String = "Curtis Chung"
-    var birthday: String = "September 12, 2004"
-    var notes: [String] = ["Very very very short", "Um, actually"]
+    var name: String
+    var birthday: String
+    var notes: [String]
+    var age: String
+    
+    init(profile: ProfileModel) {
+        self.profile = profile
+        self.notifEnabled = true
+        self.name = profile.name
+        // need to fix the profile model so notes is an array of strings
+        
+        // how to convert date to better looking string
+        self.birthday = profile.dateToString()
+        self.notes = ["none"]
+        self.age = "69"
+    }
     
     var body: some View {
         ScrollView {
             VStack( spacing: 35 ) {
-                HStack {
-                    Button {
-                        withAnimation{
-                            
-                        }
-                    } label: {
-                        Image(systemName: "chevron.left")
-                    }
-                    Spacer()
-                    
-                    // TODO: fix navigation
-//                    NavigationLink(destination: ProfileEditorView()) {
-//                        Text("Edit")
-//                    }
-                }
-                .padding(.horizontal)
                 VStack( spacing: 35 ) {
                     Circle()
                         .fill(Color.random)
@@ -56,7 +54,8 @@ struct ProfileView: View {
                         Text("Age")
                             .foregroundStyle(.secondary)
                         Spacer()
-                        Text("69")
+                        // fix this to actually calculate age
+                        Text(age)
                     }
                     .padding(.horizontal)
                     .frame(height: 55)
@@ -86,6 +85,8 @@ struct ProfileView: View {
                     .background(.white)
                     .cornerRadius(10)
                     Spacer()
+                    Spacer()
+                    Spacer()
                 }
                 .padding(.all)
                 .background(Color(red: 0.95, green: 0.95, blue: 0.95))
@@ -98,6 +99,6 @@ struct ProfileView: View {
 }
 #Preview {
     NavigationView {
-        ProfileView()
+        ProfileView(profile: ProfileModel(name: "CC", birthday: getSampleDate(offset: -1)))
     }
 }

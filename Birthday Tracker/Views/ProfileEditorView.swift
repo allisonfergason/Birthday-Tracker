@@ -95,7 +95,7 @@ struct ProfileEditorView: View {
         }
         .padding(.top)
         .background(Color(red: 0.95, green: 0.95, blue: 0.95))
-        .navigationBarItems(trailing: NavigationLink("Done", destination: ProfileView()))
+//        .navigationBarItems(trailing: NavigationLink("Done", destination: ProfileView()))
     }
 }
 

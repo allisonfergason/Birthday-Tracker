@@ -17,107 +17,123 @@ struct CalendarView: View {
     
     var body: some View {
         
-        VStack(spacing: 35) {
-            let days: [String] =
-                ["Sun", "Mon", "Tue", "Wed", "Thu","Fri","Sat"]
-            
-            HStack(spacing: 20) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(extraData()[1])
-                        .font(.caption)
-                        .fontWeight(.semibold)
+        NavigationStack{
+            VStack(spacing: 35) {
+                let days: [String] =
+                    ["Sun", "Mon", "Tue", "Wed", "Thu","Fri","Sat"]
+                
+                HStack(spacing: 20) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(extraData()[1])
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                        
+                        Text(extraData()[0])
+                            .font(.title.bold())
+                    }
                     
-                    Text(extraData()[0])
-                        .font(.title.bold())
-                }
-                
-                Spacer(minLength: 0)
-                
-                Button {
-                    withAnimation{
-                        currentMonth -= 1
-                    }
-                } label: {
-                    Image(systemName: "chevron.left")
-                }
-                Button {
-                    withAnimation{
-                        currentMonth += 1
-                    }
-                } label: {
-                    Image(systemName: "chevron.right")
-                }
-            }
-            .padding(.horizontal)
-            
-            HStack(spacing: 0) {
-                ForEach(days,id: \.self){ day in
-                    Text(day)
-                        .font(.callout)
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
-                }
-            }
-            
-            let columns = Array(repeating: GridItem(.flexible()), count: 7)
-            
-            LazyVGrid(columns: columns, spacing: 15) {
-                ForEach(extractDate()) {value in
-                    CardView( value: value)
-                        .background(
-                            Capsule()
-                                .fill(.pink)
-                                .padding(.horizontal, 8)
-                                .opacity(isSameDay(date1: value.date, date2: currentDate) ? 1 : 0)
-                        )
-                        .onTapGesture {
-                            currentDate = value.date
+                    Spacer(minLength: 0)
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+//                        NavigationLink(
+//                            destination: ListView(profileViewModel: EnvironmentObject<ProfileViewModel>),
+//                            label: {
+//                                Text("List View")
+//                            })
+                        NavigationLink(value: 1) {
+                            Text("List View")
                         }
-                }
-            }
-            
-            VStack(spacing: 20) {
-                if let contact = profileViewModel.contacts.first(where: { contact in
-                    return isSameDay(date1: contact.birthday, date2: currentDate)
-                }) {
-                    let selectedDate = Calendar.current.dateComponents([.day, .month], from: contact.birthday)
-                    let todayArray = profileViewModel.getDateList(date: contact.birthday)
-                    Text("Birthdays on \(selectedDate.month!)/\(selectedDate.day!)")
-                        .font(.title2.bold())
-                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-                    
-                    ForEach(todayArray) { item in
-                        ListItemView(name: item.name, date: item.dateToString())
+                        HStack {
+                            Button {
+                                withAnimation{
+                                    currentMonth -= 1
+                                }
+                            } label: {
+                                Image(systemName: "chevron.left")
+                            }
+                            Button {
+                                withAnimation{
+                                    currentMonth += 1
+                                }
+                            } label: {
+                                Image(systemName: "chevron.right")
+                            }
+                        }
                     }
-                } else {
-                    Text("Upcoming Birthdays")
-                        .font(.title2.bold())
-                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-                    
-                    // find upcoming
-                    let nextIndex = profileViewModel.getIndex(date: currentDate);
-                    let comingDates =
-                    
-                    // loops around to beginning of year if necessary
-                    if nextIndex >= profileViewModel.contacts.count-1 {
-                        [profileViewModel.contacts[nextIndex], profileViewModel.contacts[0]]
+                }
+                .padding(.horizontal)
+                .navigationDestination(for: Int.self) { value in
+                    ListView(profileViewModel: _profileViewModel) }
+                
+                HStack(spacing: 0) {
+                    ForEach(days,id: \.self){ day in
+                        Text(day)
+                            .font(.callout)
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity)
+                    }
+                }
+                
+                let columns = Array(repeating: GridItem(.flexible()), count: 7)
+                
+                LazyVGrid(columns: columns, spacing: 15) {
+                    ForEach(extractDate()) {value in
+                        CardView( value: value)
+                            .background(
+                                Capsule()
+                                    .fill(.pink)
+                                    .padding(.horizontal, 8)
+                                    .opacity(isSameDay(date1: value.date, date2: currentDate) ? 1 : 0)
+                            )
+                            .onTapGesture {
+                                currentDate = value.date
+                            }
+                    }
+                }
+                
+                VStack(spacing: 20) {
+                    if let contact = profileViewModel.contacts.first(where: { contact in
+                        return isSameDay(date1: contact.birthday, date2: currentDate)
+                    }) {
+                        let selectedDate = Calendar.current.dateComponents([.day, .month], from: contact.birthday)
+                        let todayArray = profileViewModel.getDateList(date: contact.birthday)
+                        Text("Birthdays on \(selectedDate.month!)/\(selectedDate.day!)")
+                            .font(.title2.bold())
+                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                        
+                        ForEach(todayArray) { item in
+                            ListItemView(item: item)
+                        }
                     } else {
-                        Array(profileViewModel.contacts[nextIndex...nextIndex+1])
-                    }
-                    
-                    if comingDates.isEmpty {
-                        Text("Some birthdays found")
-                    }
-                    ForEach(comingDates) { contact in
-                        ListItemView(name: contact.name, date: contact.dateToString())
+                        Text("Upcoming Birthdays")
+                            .font(.title2.bold())
+                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                        
+                        // find upcoming
+                        let nextIndex = profileViewModel.getIndex(date: currentDate);
+                        let comingDates =
+                        
+                        // loops around to beginning of year if necessary
+                        if nextIndex >= profileViewModel.contacts.count-1 {
+                            [profileViewModel.contacts[nextIndex], profileViewModel.contacts[0]]
+                        } else {
+                            Array(profileViewModel.contacts[nextIndex...nextIndex+1])
+                        }
+                        
+                        if comingDates.isEmpty {
+                            Text("Some birthdays found")
+                        }
+                        ForEach(comingDates) { contact in
+                            ListItemView(item: contact)
+                        }
                     }
                 }
+                .padding()
+                .padding(.top, 10)
+            }.onChange(of: currentMonth) {
+                // update Month
+                currentDate = getCurrentMonth()
             }
-            .padding()
-            .padding(.top, 10)
-        }.onChange(of: currentMonth) {
-            // update Month
-            currentDate = getCurrentMonth()
         }
     }
     
@@ -201,5 +217,9 @@ struct CalendarView: View {
 }
 
 #Preview {
-    HomeView().environmentObject(ProfileViewModel())
+    NavigationStack {
+        HomeView()
+    }
+    .environmentObject(ProfileViewModel())
+    //HomeView().environmentObject(ProfileViewModel())
 }

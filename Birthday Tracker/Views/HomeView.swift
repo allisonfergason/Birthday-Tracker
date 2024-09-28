@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @State var currentDate: Date = Date()
+    @State var profileViewModel = ProfileViewModel()
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -18,6 +19,7 @@ struct HomeView: View {
                 CalendarView(currentDate: $currentDate)
             }
         }
+        .environmentObject(ProfileViewModel())
     }
 }
 
