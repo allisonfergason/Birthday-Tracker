@@ -32,5 +32,8 @@ struct ProfileModel: Identifiable, Codable {
     
     func update() -> ProfileModel {
         return ProfileModel(id: id, name: name, birthday: birthday, age: age, notifEnabled: notifEnabled, notes: notes)
+    }
     func getBirthMonth() -> String {
         return birthday.getMonthName()
+    }
+}
