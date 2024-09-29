@@ -8,24 +8,24 @@
 import SwiftUI
 
 struct ProfileView: View {
-    //
+    // add countdown button somewhere in here 
     @EnvironmentObject var profileViewModel: ProfileViewModel
     @State var profile: ProfileModel
     @State var notifEnabled = true
     var name: String
     var birthday: String
-    var notes: [String]
+    var notes: String
     var age: String
     
     init(profile: ProfileModel) {
         self.profile = profile
         self.notifEnabled = true
         self.name = profile.name
-        // need to fix the profile model so notes is an array of strings
         
         // how to convert date to better looking string
         self.birthday = profile.dateToString()
-        self.notes = ["none"]
+        self.notes = profile.notes
+        // fix age
         self.age = "69"
     }
     
@@ -72,11 +72,12 @@ struct ProfileView: View {
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Notes")
                             .foregroundStyle(.secondary)
-                        VStack(alignment: .leading) {
-                            ForEach(notes, id: \.self) { note in
-                                Text("- \(note)")
-                            }
-                        }
+                        Text(notes)
+//                        VStack(alignment: .leading) {
+//                            ForEach(notes, id: \.self) { note in
+//                                Text("- \(note)")
+//                            }
+//                        }
                         
                         Spacer()
                     }
@@ -93,7 +94,7 @@ struct ProfileView: View {
             }
             .padding(.top)
         }
-        .navigationBarItems(trailing: NavigationLink("Edit", destination: ProfileEditorView()))
+        .navigationBarItems(trailing: NavigationLink("Edit", destination: ProfileEditorView(profile: profile)))
     }
     
 }

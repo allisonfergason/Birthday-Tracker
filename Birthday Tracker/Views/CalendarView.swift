@@ -35,11 +35,6 @@ struct CalendarView: View {
                     Spacer(minLength: 0)
                     
                     VStack(alignment: .leading, spacing: 10) {
-//                        NavigationLink(
-//                            destination: ListView(profileViewModel: EnvironmentObject<ProfileViewModel>),
-//                            label: {
-//                                Text("List View")
-//                            })
                         NavigationLink(value: 1) {
                             Text("List View")
                         }

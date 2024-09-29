@@ -8,25 +8,31 @@
 import SwiftUI
 
 struct ListView: View {
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var profileViewModel: ProfileViewModel
+    @State var currentDate: Date = Date()
     let months: [String] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    
-    // make list items into buttons that lead to a profile, pass the profile model object to 
     
     var body: some View {
         ScrollView(.vertical) {
+            // make this text bigger
+            HStack(spacing: 10) {
+                Text("Birthdays")
+                    .font(.title.bold())
+                Spacer()
+            }
+
             ForEach(months, id: \.self) { month in
                 isMonthEmpty(month: month)
                 getMonthContacts(month: month)
             }
             
-            
             Rectangle()
                 .frame(height: 1)
                 .foregroundColor(Color(#colorLiteral(red: 0.8692006469, green: 0.8692006469, blue: 0.8692006469, alpha: 1)))
                 .padding(.vertical)
-            // doesn't work??
-            NavigationLink ("Add Contact", destination: ProfileEditorView())
+            // doesn't work?? or maybe it does actually
+            NavigationLink ("Add Contact", destination: ProfileEditorView(profile: ProfileModel(name: "Name", birthday: currentDate)))
                 .foregroundColor(.white)
                 .font(.headline)
                 .frame(height: 55)
@@ -34,9 +40,13 @@ struct ListView: View {
                 .background(Color(#colorLiteral(red: 0, green: 0.3285208941, blue: 0.5748849511, alpha: 1)))
                 .cornerRadius(10)
         }
-        .navigationTitle("Birthdays")
-        .navigationBarItems(trailing: NavigationLink("Add Contact", destination: ProfileEditorView()))
+        //.navigationTitle("Birthdays")
+        .navigationBarItems(trailing: Button("Calendar View") {
+        dismiss()
+        })
         .padding(10)
+        .navigationBarBackButtonHidden(true)
+        
     }
     
     @ViewBuilder

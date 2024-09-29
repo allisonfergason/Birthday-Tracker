@@ -9,10 +9,21 @@ import SwiftUI
 
 struct ProfileEditorView: View {
     
-    @State var notifEnabled = true
-    @State var name: String = "Curtis Chung"
-    @State var notes: String = "- Very very very short \n- Um, actually"
+    @Environment(\.dismiss) var dismiss
+    @State var notifEnabled: Bool
+    @State var name: String
+    @State var notes: String
     @State var birthday = Date()
+    
+    // why is age missing in this one
+    // need to add in use of update() function so the changes actually save
+    
+    init(profile: ProfileModel) {
+        self.notifEnabled = true
+        self.name = profile.name
+        self.birthday = profile.birthday
+        self.notes = profile.notes
+    }
     
     var body: some View {
         VStack( spacing: 35 ) {
@@ -95,12 +106,16 @@ struct ProfileEditorView: View {
         }
         .padding(.top)
         .background(Color(red: 0.95, green: 0.95, blue: 0.95))
-//        .navigationBarItems(trailing: NavigationLink("Done", destination: ProfileView()))
+        // add in button actions the stuff needed to save changes - when they press done changes are saved, when they press back they are not saved
+        // this button and the one in list view will not work unless you start from another view- when testing any of the nav just start from calendar view
+        .navigationBarItems(trailing: Button("Done") {
+            dismiss()
+        })
     }
 }
 
 #Preview {
     NavigationView {
-        ProfileEditorView()
+        ProfileEditorView(profile: ProfileModel(name: "CC", birthday: getSampleDate(offset: -1)))
     }
 }
