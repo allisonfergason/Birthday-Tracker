@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    // add countdown button somewhere in here 
+    // add countdown button somewhere in here
     @EnvironmentObject var profileViewModel: ProfileViewModel
     @State var profile: ProfileModel
     @State var notifEnabled = true
@@ -102,4 +102,5 @@ struct ProfileView: View {
     NavigationView {
         ProfileView(profile: ProfileModel(name: "CC", birthday: getSampleDate(offset: -1)))
     }
+    .environmentObject(ProfileViewModel())
 }

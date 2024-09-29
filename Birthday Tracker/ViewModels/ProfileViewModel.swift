@@ -48,11 +48,6 @@ class ProfileViewModel: ObservableObject {
         contacts.append(newContact)
     }
     func updateContact(item: ProfileModel) {
-//        if let index = items.firstIndex { (existingItem) -> Bool in
-//            return existingItem.id == item.id
-//        } {
-//            // code
-//        }
         if let index = contacts.firstIndex(where: { $0.id == item.id }) {
             contacts[index] = item.update()
         }

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ProfileEditorView: View {
     
+    @EnvironmentObject var profileViewModel: ProfileViewModel
     @Environment(\.dismiss) var dismiss
+    @State var profile: ProfileModel
     @State var notifEnabled: Bool
     @State var name: String
     @State var notes: String
@@ -19,6 +21,7 @@ struct ProfileEditorView: View {
     // need to add in use of update() function so the changes actually save
     
     init(profile: ProfileModel) {
+        self.profile = profile
         self.notifEnabled = true
         self.name = profile.name
         self.birthday = profile.birthday
@@ -27,19 +30,7 @@ struct ProfileEditorView: View {
     
     var body: some View {
         VStack( spacing: 35 ) {
-            
-            // TODO: Fix navigation
-//            HStack {
-//                Spacer()
-//                Button {
-//                    withAnimation{
-//                        
-//                    }
-//                } label: {
-//                    Text("Done")
-//                }
-//            }
-            //.padding(.horizontal)
+        
             VStack( spacing: 35 ) {
                 Circle()
                     .fill(Color.random)
@@ -118,4 +109,5 @@ struct ProfileEditorView: View {
     NavigationView {
         ProfileEditorView(profile: ProfileModel(name: "CC", birthday: getSampleDate(offset: -1)))
     }
+    .environmentObject(ProfileViewModel())
 }
