@@ -47,9 +47,9 @@ class ProfileViewModel: ObservableObject {
         let newContact = ProfileModel(name: name, birthday: birthday)
         contacts.append(newContact)
     }
-    func updateContact(item: ProfileModel) {
+    func updateContact(item: ProfileModel, name: String, birthday: Date, notifEnabled: Bool, notes: String) {
         if let index = contacts.firstIndex(where: { $0.id == item.id }) {
-            contacts[index] = item.update()
+            contacts[index] = item.update(name: name, birthday: birthday, notifEnabled: notifEnabled, notes: notes)
         }
     }
     

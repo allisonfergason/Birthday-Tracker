@@ -79,6 +79,7 @@ struct ProfileEditorView: View {
                         .foregroundStyle(.secondary)
                     TextEditor(text: $notes)
                         .frame(height: 60)
+                        .onTapGesture {}
                 
                     Spacer()
                 }
@@ -100,6 +101,7 @@ struct ProfileEditorView: View {
         // add in button actions the stuff needed to save changes - when they press done changes are saved, when they press back they are not saved
         // this button and the one in list view will not work unless you start from another view- when testing any of the nav just start from calendar view
         .navigationBarItems(trailing: Button("Done") {
+            profileViewModel.updateContact(item: profile, name: name, birthday: birthday, notifEnabled: notifEnabled, notes: notes)
             dismiss()
         })
     }

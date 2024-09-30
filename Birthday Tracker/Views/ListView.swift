@@ -31,7 +31,7 @@ struct ListView: View {
                 .frame(height: 1)
                 .foregroundColor(Color(#colorLiteral(red: 0.8692006469, green: 0.8692006469, blue: 0.8692006469, alpha: 1)))
                 .padding(.vertical)
-            // doesn't work?? or maybe it does actually
+            // maybe add field to profile edit to signify this profile model is new and needs to be added to the array
             NavigationLink ("Add Contact", destination: ProfileEditorView(profile: ProfileModel(name: "Name", birthday: currentDate)))
                 .foregroundColor(.white)
                 .font(.headline)
@@ -40,7 +40,6 @@ struct ListView: View {
                 .background(Color(#colorLiteral(red: 0, green: 0.3285208941, blue: 0.5748849511, alpha: 1)))
                 .cornerRadius(10)
         }
-        //.navigationTitle("Birthdays")
         .navigationBarItems(trailing: Button("Calendar View") {
         dismiss()
         })
