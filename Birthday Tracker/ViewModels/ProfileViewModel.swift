@@ -20,11 +20,12 @@ class ProfileViewModel: ObservableObject {
         getContacts()
     }
     
+    // rework this to be a more efficient data structure that doesn't have to be sorted every time
     func getContacts() {
         
         let newItems = [
-            ProfileModel(name: "first", birthday: getSampleDate(offset: -1)),
-            ProfileModel(name: "second", birthday: getSampleDate(offset: 10)),
+            ProfileModel(name: "first", birthday: getSampleDate(offset: 1)),
+            ProfileModel(name: "second", birthday: getSampleDate(offset: 0)),
             ProfileModel(name: "third", birthday: getSampleDate(offset: 40))
         ]
         contacts.append(contentsOf: newItems)
@@ -39,13 +40,14 @@ class ProfileViewModel: ObservableObject {
             return
         }
         
-        self.contacts = savedItems
+        self.contacts = savedItems.sorted { $0.birthday < $1.birthday }
     }
     
     // add, delete, update
     func addContact(name: String, birthday: Date, age: Int? = nil, notifEnabled: Bool = true, notes: String = "") {
         let newContact = ProfileModel(name: name, birthday: birthday)
         contacts.append(newContact)
+        contacts = contacts.sorted { $0.birthday < $1.birthday }
     }
     func updateContact(item: ProfileModel, name: String, birthday: Date, notifEnabled: Bool, notes: String) {
         if let index = contacts.firstIndex(where: { $0.id == item.id }) {

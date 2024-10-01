@@ -16,16 +16,17 @@ struct ProfileEditorView: View {
     @State var name: String
     @State var notes: String
     @State var birthday = Date()
+    @State var notifChanged: Bool
+    var newProfile: Bool?
     
-    // why is age missing in this one
-    // need to add in use of update() function so the changes actually save
-    
-    init(profile: ProfileModel) {
+    init(profile: ProfileModel, newProfile: Bool? = false) {
         self.profile = profile
         self.notifEnabled = true
         self.name = profile.name
         self.birthday = profile.birthday
         self.notes = profile.notes
+        self.notifChanged = false
+        self.newProfile = newProfile
     }
     
     var body: some View {
@@ -62,9 +63,13 @@ struct ProfileEditorView: View {
                 .overlay(Divider()
                     .frame(maxWidth: .infinity), alignment: .bottom)
                 
+                // updating notification does not work
                 HStack(alignment: .center) {
                     Toggle("Notifications", isOn: $notifEnabled)
                         .foregroundStyle(.secondary)
+                        .onTapGesture {
+                            self.notifChanged = true
+                        }
                 }
                 .padding(.horizontal)
                 .frame(height: 55)
@@ -98,10 +103,18 @@ struct ProfileEditorView: View {
         }
         .padding(.top)
         .background(Color(red: 0.95, green: 0.95, blue: 0.95))
-        // add in button actions the stuff needed to save changes - when they press done changes are saved, when they press back they are not saved
-        // this button and the one in list view will not work unless you start from another view- when testing any of the nav just start from calendar view
+
+        // notes and notifenabled having issues saving, maybe something to do with them being optional and the default values
         .navigationBarItems(trailing: Button("Done") {
-            profileViewModel.updateContact(item: profile, name: name, birthday: birthday, notifEnabled: notifEnabled, notes: notes)
+            if (newProfile == true) {
+                profileViewModel.addContact(name: name, birthday: birthday, notifEnabled: notifEnabled, notes: notes)
+            }
+            if (notifChanged == true) {
+                profileViewModel.updateContact(item: profile, name: name, birthday: birthday, notifEnabled: !notifEnabled, notes: notes)
+            }
+            else {
+                profileViewModel.updateContact(item: profile, name: name, birthday: birthday, notifEnabled: notifEnabled, notes: notes)
+            }
             dismiss()
         })
     }

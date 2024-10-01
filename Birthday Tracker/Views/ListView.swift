@@ -31,8 +31,9 @@ struct ListView: View {
                 .frame(height: 1)
                 .foregroundColor(Color(#colorLiteral(red: 0.8692006469, green: 0.8692006469, blue: 0.8692006469, alpha: 1)))
                 .padding(.vertical)
-            // maybe add field to profile edit to signify this profile model is new and needs to be added to the array
-            NavigationLink ("Add Contact", destination: ProfileEditorView(profile: ProfileModel(name: "Name", birthday: currentDate)))
+            // when adding contact the name and birthday save but not the notes (notif not tried)
+            // also the added profiles disappear once code is updated (maybe okay?)
+            NavigationLink ("Add Contact", destination: ProfileEditorView(profile: ProfileModel(name: "Name", birthday: currentDate), newProfile: true))
                 .foregroundColor(.white)
                 .font(.headline)
                 .frame(height: 55)
@@ -55,6 +56,7 @@ struct ListView: View {
         }
     }
     
+
     @ViewBuilder
     func getMonthContacts(month: String) -> some View {
             VStack {

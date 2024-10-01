@@ -11,7 +11,7 @@ struct ProfileView: View {
     // add countdown button somewhere in here
     @EnvironmentObject var profileViewModel: ProfileViewModel
     @State var profile: ProfileModel
-    @State var notifEnabled = true
+    @State var notifEnabled: Bool
     var name: String
     var birthday: String
     var notes: String
@@ -19,7 +19,7 @@ struct ProfileView: View {
     
     init(profile: ProfileModel) {
         self.profile = profile
-        self.notifEnabled = true
+        self.notifEnabled = profile.notifEnabled
         self.name = profile.name
         
         // how to convert date to better looking string
