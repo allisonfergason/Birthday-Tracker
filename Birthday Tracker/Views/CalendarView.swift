@@ -12,6 +12,8 @@ struct CalendarView: View {
     @Binding var currentDate: Date
     @EnvironmentObject var profileViewModel: ProfileViewModel
     
+    // calendar view not loading changes to contacts as they are being made, or just not changing them at all
+    
     // Month update on arrow button clicks
     @State var currentMonth: Int = 0
     

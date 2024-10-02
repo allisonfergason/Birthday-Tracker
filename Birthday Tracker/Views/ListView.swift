@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+// works when you change the birthday within the same month, but crashes when you change it to a different month
+// calendar view for some reason does not work at all when updating the profiles even though it's calling the same methods??
+// add way to delete people- probably in profile editor
+
 struct ListView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var profileViewModel: ProfileViewModel

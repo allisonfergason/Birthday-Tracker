@@ -30,8 +30,8 @@ struct ProfileEditorView: View {
     }
     
     var body: some View {
-        VStack( spacing: 35 ) {
-        
+        ScrollView {
+            
             VStack( spacing: 35 ) {
                 Circle()
                     .fill(Color.random)
@@ -97,6 +97,24 @@ struct ProfileEditorView: View {
                     .frame(maxWidth: .infinity), alignment: .bottom)
 
                 Spacer()
+                
+//                VStack(alignment: .leading, spacing: 10) {
+//                    Text("Delete Contact")
+//                        .font(.subheadline)
+//                        .foregroundStyle(Color(Color.red))
+//                }
+//                .padding(.all)
+//                .frame(maxWidth: .infinity, alignment: .center)
+//                .background(.white)
+//                .overlay(Divider()
+//                    .frame(maxWidth: .infinity), alignment: .top)
+//                .overlay(Divider()
+//                    .frame(maxWidth: .infinity), alignment: .bottom)
+//                // causing some issues, possible with the dismiss going back to a profileview that no longer exists
+//                .onTapGesture {
+//                    profileViewModel.deleteContact(item: profile)
+//                    dismiss()
+//                }
             }
             .padding(.vertical)
             .background(Color(red: 0.95, green: 0.95, blue: 0.95))

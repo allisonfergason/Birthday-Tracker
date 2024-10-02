@@ -53,6 +53,13 @@ class ProfileViewModel: ObservableObject {
         if let index = contacts.firstIndex(where: { $0.id == item.id }) {
             contacts[index] = item.update(name: name, birthday: birthday, notifEnabled: notifEnabled, notes: notes)
         }
+        contacts = contacts.sorted { $0.birthday < $1.birthday }
+    }
+    func deleteContact(item: ProfileModel) {
+        if let index = contacts.firstIndex(where: { $0.id == item.id }) {
+            contacts.remove(at: index)
+        }
+        contacts = contacts.sorted { $0.birthday < $1.birthday }
     }
     
     func saveItems() {

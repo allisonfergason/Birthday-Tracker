@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     // add countdown button somewhere in here
     @EnvironmentObject var profileViewModel: ProfileViewModel
+    @Environment(\.dismiss) var dismiss
     @State var profile: ProfileModel
     @State var notifEnabled: Bool
     var name: String
@@ -73,18 +74,28 @@ struct ProfileView: View {
                         Text("Notes")
                             .foregroundStyle(.secondary)
                         Text(notes)
-//                        VStack(alignment: .leading) {
-//                            ForEach(notes, id: \.self) { note in
-//                                Text("- \(note)")
-//                            }
-//                        }
-                        
                         Spacer()
                     }
                     .padding(.all)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(.white)
                     .cornerRadius(10)
+                    
+                    // delete function was not working in editor view, here for now
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Delete Contact")
+                            .font(.subheadline)
+                            .foregroundStyle(Color(Color.red))
+                        Spacer()
+                    }
+                    .padding(.all)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .background(.white)
+                    .cornerRadius(10)
+                    .onTapGesture {
+                        profileViewModel.deleteContact(item: profile)
+                        dismiss()
+                    }
                     Spacer()
                     Spacer()
                     Spacer()
