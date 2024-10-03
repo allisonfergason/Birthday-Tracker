@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Birthday_TrackerApp: App {
+    @State var profileViewModel = ProfileViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                HomeView()
+            }
+            .environmentObject(ProfileViewModel())
         }
     }
 }

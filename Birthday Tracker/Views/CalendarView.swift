@@ -11,6 +11,7 @@ struct CalendarView: View {
     
     @Binding var currentDate: Date
     @EnvironmentObject var profileViewModel: ProfileViewModel
+
     
     // calendar view not loading changes to contacts as they are being made, or just not changing them at all
     
@@ -18,8 +19,6 @@ struct CalendarView: View {
     @State var currentMonth: Int = 0
     
     var body: some View {
-        
-        NavigationStack{
             VStack(spacing: 35) {
                 let days: [String] =
                     ["Sun", "Mon", "Tue", "Wed", "Thu","Fri","Sat"]
@@ -131,7 +130,6 @@ struct CalendarView: View {
                 // update Month
                 currentDate = getCurrentMonth()
             }
-        }
     }
     
     @ViewBuilder
@@ -218,5 +216,4 @@ struct CalendarView: View {
         HomeView()
     }
     .environmentObject(ProfileViewModel())
-    //HomeView().environmentObject(ProfileViewModel())
 }

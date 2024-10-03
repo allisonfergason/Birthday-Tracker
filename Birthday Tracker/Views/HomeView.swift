@@ -14,15 +14,17 @@ struct HomeView: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: 20) {
-                // date picker
-                CalendarView(currentDate: $currentDate)
-            }
+            // date picker
+            CalendarView(currentDate: $currentDate)
+            //let p = print("home -> calendar")
         }
         .environmentObject(ProfileViewModel())
     }
 }
 
 #Preview {
-    HomeView().environmentObject(ProfileViewModel())
+    NavigationStack {
+        HomeView()
+    }
+    .environmentObject(ProfileViewModel())
 }

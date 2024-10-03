@@ -121,7 +121,7 @@ struct MonthHeaderView: View {
 }
 
 #Preview {
-    NavigationView {
+    NavigationStack {
         ListView()
     }
     .environmentObject(ProfileViewModel())

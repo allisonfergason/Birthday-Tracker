@@ -139,7 +139,7 @@ struct ProfileEditorView: View {
 }
 
 #Preview {
-    NavigationView {
+    NavigationStack {
         ProfileEditorView(profile: ProfileModel(name: "CC", birthday: getSampleDate(offset: -1)))
     }
     .environmentObject(ProfileViewModel())
