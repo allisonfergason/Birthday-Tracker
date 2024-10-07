@@ -28,6 +28,7 @@ extension Date{
         return formatter.string(from: self)
     }
     
+    // edit these to account for dates that have passed
     func monthsFrom(from date: Date) -> Int {
         return Calendar.current.dateComponents([.month], from: date, to: self).month ?? 0
     }

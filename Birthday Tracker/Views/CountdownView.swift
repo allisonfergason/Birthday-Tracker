@@ -12,12 +12,14 @@ struct CountdownView: View {
     let birthdayComponents = DateComponents(calendar: .current, month: 9, day: 14)
     var monthsLeft: Int
     var daysLeft: Int
-    init() {
+    
+    init(profile: ProfileModel) {
         let today = Date().removeTimeStamp()
-        let nextBirthday = Calendar.current.nextDate(after: today, matching: birthdayComponents, matchingPolicy: .nextTime)!
-        monthsLeft = nextBirthday.monthsFrom(from: today);
+        //let nextBirthday = Calendar.current.nextDate(after: today, matching: birthdayComponents, matchingPolicy: .nextTime)!
+        let birthday = profile.birthday
+        monthsLeft = birthday.monthsFrom(from: today);
         let todayPlusMonths = Calendar.current.date(byAdding: .month, value: monthsLeft, to: today)!
-        daysLeft = nextBirthday.daysFrom(from: todayPlusMonths)
+        daysLeft = birthday.daysFrom(from: todayPlusMonths)
     }
     
     
@@ -48,7 +50,7 @@ struct CountdownView: View {
 }
 
 #Preview {
-    NavigationView {
-        CountdownView()
+    NavigationStack {
+        CountdownView(profile: ProfileModel(name: "CC", birthday: getSampleDate(offset: 40)))
     }
 }

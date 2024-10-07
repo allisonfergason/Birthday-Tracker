@@ -37,8 +37,11 @@ struct ProfileView: View {
                     Circle()
                         .fill(Color.random)
                         .frame(width: 256, height: 256)
-                    Text(name)
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    VStack (spacing: 10){
+                        Text(name)
+                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        NavigationLink("countdown", destination: CountdownView(profile: profile))
+                    }
                 }
                 VStack( alignment: .leading, spacing: 10 ) {
                     HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
@@ -111,7 +114,7 @@ struct ProfileView: View {
 }
 #Preview {
     NavigationStack {
-        ProfileView(profile: ProfileModel(name: "CC", birthday: getSampleDate(offset: -1)))
+        ProfileView(profile: ProfileModel(name: "CC", birthday: getSampleDate(offset: 40)))
     }
     .environmentObject(ProfileViewModel())
 }
