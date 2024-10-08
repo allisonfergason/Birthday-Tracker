@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    // add countdown button somewhere in here
+
     @EnvironmentObject var profileViewModel: ProfileViewModel
     @Environment(\.dismiss) var dismiss
     @State var profile: ProfileModel
@@ -54,17 +54,17 @@ struct ProfileView: View {
                     .frame(height: 55)
                     .background(.white)
                     .cornerRadius(10)
-                    HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
-                        Text("Age")
-                            .foregroundStyle(.secondary)
-                        Spacer()
-                        // fix this to actually calculate age
-                        Text(age)
-                    }
-                    .padding(.horizontal)
-                    .frame(height: 55)
-                    .background(.white)
-                    .cornerRadius(10)
+//                    HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
+//                        Text("Age")
+//                            .foregroundStyle(.secondary)
+//                        Spacer()
+//                        // fix this to actually calculate age
+//                        Text(age)
+//                    }
+//                    .padding(.horizontal)
+//                    .frame(height: 55)
+//                    .background(.white)
+//                    .cornerRadius(10)
                     HStack(alignment: .center) {
                         Toggle("Notifications", isOn: $notifEnabled)
                             .foregroundStyle(.secondary)
