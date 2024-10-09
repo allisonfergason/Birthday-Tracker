@@ -28,12 +28,22 @@ extension Date{
         return formatter.string(from: self)
     }
     
-    // edit these to account for dates that have passed
-    func monthsFrom(from date: Date) -> Int {
-        return Calendar.current.dateComponents([.month], from: date, to: self).month ?? 0
+    func todayEarlierThan(date: Date) -> Bool {
+        let delta1 = self.timeIntervalSince(date)
+        if (delta1 < 0) {
+            return false
+        }
+        return true
     }
+    
+    func monthsFrom(from date: Date) -> Int {
+        let i:Int = Calendar.current.dateComponents([.month], from: date, to: self).month ?? 0
+        return i
+    }
+
     func daysFrom(from date: Date) -> Int {
-        return Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
+        let i:Int = Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
+        return i
     }
     
     func removeTimeStamp() -> Date {

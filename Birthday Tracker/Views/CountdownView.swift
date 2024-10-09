@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CountdownView: View {
+    // add some kind of confetti or animation when the date is today
     
     let birthdayComponents = DateComponents(calendar: .current, month: 9, day: 14)
     var monthsLeft: Int
@@ -15,8 +16,12 @@ struct CountdownView: View {
     
     init(profile: ProfileModel) {
         let today = Date().removeTimeStamp()
-        //let nextBirthday = Calendar.current.nextDate(after: today, matching: birthdayComponents, matchingPolicy: .nextTime)!
-        let birthday = profile.birthday
+        var birthday = profile.birthday
+        var earlier = birthday.todayEarlierThan(date: today)
+        while (!earlier) {
+            birthday = Calendar.current.date(byAdding: .month, value: 12, to: birthday)!
+            earlier = birthday.todayEarlierThan(date: today)
+        }
         monthsLeft = birthday.monthsFrom(from: today);
         let todayPlusMonths = Calendar.current.date(byAdding: .month, value: monthsLeft, to: today)!
         daysLeft = birthday.daysFrom(from: todayPlusMonths)
@@ -51,6 +56,6 @@ struct CountdownView: View {
 
 #Preview {
     NavigationStack {
-        CountdownView(profile: ProfileModel(name: "CC", birthday: getSampleDate(offset: 40)))
+        CountdownView(profile: ProfileModel(name: "CC", birthday: getSampleDate(offset: 10)))
     }
 }
