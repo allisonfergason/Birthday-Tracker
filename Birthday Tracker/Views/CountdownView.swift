@@ -29,28 +29,40 @@ struct CountdownView: View {
     
     
     var body: some View {
-        ScrollView(.vertical) {
             VStack {
                 Spacer()
-                // get variables to count down
-                // add some colored boxes or something for the background
-                Text("\(monthsLeft)")
-                    .font(.custom("SFUIDisplay-Light", size: 120))
-                Text("months")
-                    .font(.title)
+                VStack {
+                    Spacer()
+                    Text("\(monthsLeft)")
+                        .font(.custom("SFUIDisplay-Light", size: 120))
+                    Text("months")
+                        .font(.title)
+                    Spacer()
+                    Spacer()
+                }
+                .frame(width: 300, height: 200, alignment: .center)
+                .background(Color(#colorLiteral(red: 0.4500938654, green: 0.9813225865, blue: 0.4743030667, alpha: 1)))
+                .cornerRadius(40)
                 Spacer()
-                Text("\(daysLeft)")
-                    .font(.custom("SFUIDisplay-Light", size: 120))
-                Text("days")
-                    .font(.title)
+                VStack {
+                    Spacer()
+                    Text("\(daysLeft)")
+                        .font(.custom("SFUIDisplay-Light", size: 120))
+                    Text("days")
+                        .font(.title)
+                    Spacer()
+                    Spacer()
+                }
+                .frame(width: 300, height: 200, alignment: .center)
+                .background(Color(#colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)))
+                .cornerRadius(40)
+                Spacer()
                 Spacer()
             }
             .padding(.vertical)
             .frame(minWidth: 600, minHeight: 600, alignment: .center)
+            .navigationTitle("Countdown")
             //.background(Color(.blue))
-        }
-        // change title?
-        .navigationTitle("Countdown")
     }
 }
 

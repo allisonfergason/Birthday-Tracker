@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-// works when you change the birthday within the same month, but crashes when you change it to a different month
-// calendar view for some reason does not work at all when updating the profiles even though it's calling the same methods??
-// add way to delete people- probably in profile editor
-
 struct ListView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var profileViewModel: ProfileViewModel
@@ -35,8 +31,7 @@ struct ListView: View {
                 .frame(height: 1)
                 .foregroundColor(Color(#colorLiteral(red: 0.8692006469, green: 0.8692006469, blue: 0.8692006469, alpha: 1)))
                 .padding(.vertical)
-            // when adding contact the name and birthday save but not the notes (notif not tried)
-            // also the added profiles disappear once code is updated (maybe okay?)
+            
             NavigationLink ("Add Contact", destination: ProfileEditorView(profile: ProfileModel(name: "Name", birthday: currentDate), newProfile: true))
                 .foregroundColor(.white)
                 .font(.headline)
